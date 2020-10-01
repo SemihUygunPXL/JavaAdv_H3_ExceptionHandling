@@ -1,9 +1,9 @@
 package be.pxl.ja.streamingservice.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditCardNumberTest {
 
@@ -61,6 +61,20 @@ public class CreditCardNumberTest {
 	public void throwsInvalidArgumentExceptionWhenInvalidCardType() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			new CreditCardNumber("7321876532147654", "123");
+		});
+	}
+
+	@Test
+	public void throwsIllegalArgumentExceptionWhenCvcTooShort(){
+		assertThrows(IllegalArgumentException.class, () -> {
+			new CreditCardNumber("5321876532147654", "12");
+		});
+	}
+
+	@Test
+	public void throwsIllegalArgumentExceptionWhenCvcTooLong(){
+		assertThrows(IllegalArgumentException.class, () -> {
+			new CreditCardNumber("5321876532147654", "1234");
 		});
 	}
 }

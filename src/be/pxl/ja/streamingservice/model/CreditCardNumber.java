@@ -19,6 +19,9 @@ public class CreditCardNumber {
 			throw new IllegalArgumentException("This is not a valid credit card.");
 		}
 		this.cvc = removeBlanks(cvc);
+		if (!isNumeric(cvc) || cvc.length() != CVC_LENGTH) {
+			throw new IllegalArgumentException("A card number ccv must have " + CVC_LENGTH + " digits.");
+		}
 	}
 
 	public CreditCardType getType() {
